@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en">
+<h:head>
+    <title>Lista de Pessoas</title>
+</h:head>
+<h:body>
+
+    <p:layout fullPage="true">
+        <p:layoutUnit position="north" size="60">
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="Início" icon="pi pi-fw pi-search" outcome="index.xhtml"/>
+                    <p:menuitem value="Cadastro" icon="pi pi-fw pi-plus" outcome="create.xhtml"/>
+                    <p:menuitem value="Consulta" icon="pi pi-fw pi-search" outcome="lista.xhtml"/>
+
+                </p:menubar>
+            </h:form>
+        </p:layoutUnit>
+        <p:layoutUnit position="center">
+            <h:form>
+                <p:panel header="Bem-vindo ao sistema">
+                    <p:outputLabel value="Entre com Login e Senha."/>
+                </p:panel>
+                <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3">
+                    <p:outputLabel for="login" value="Login:"/>
+                    <p:inputText id="login" value="#{remoteValidationView.firstname}" required="true" label="Firstname">
+                        <f:validateLength minimum="2"/>
+                    </p:inputText>
+                    <p:message for="login" display="icon"/>
+
+                    <p:outputLabel for="senha" value="Senha:"/>
+                    <p:inputText id="senha" value="#{remoteValidationView.lastname}" label="Lastname" required="true">
+                        <f:validateLength minimum="2"/>
+                        <p:ajax update="msgLastname" event="keyup"/>
+                    </p:inputText>
+                    <p:message for="senha" id="msgLastname" display="icon"/>
+
+                </h:panelGrid>
+
+                <p:commandButton value="Conectar" update="@form" action="#{index.html}" icon="pi pi-check"/>
+            </h:form>
+        </p:layoutUnit>
+    </p:layout>
+
+
+
+
+</h:body>
+</html>

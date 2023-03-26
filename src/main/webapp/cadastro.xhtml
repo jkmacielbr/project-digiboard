@@ -9,9 +9,10 @@
 
 <h:body>
     <h:form>
+
         <p:menubar>
             <p:menuitem value="Início" icon="pi pi-fw pi-search" outcome="index.xhtml"/>
-            <p:menuitem value="Cadastro" icon="pi pi-fw pi-plus" outcome="create.xhtml"/>
+            <p:menuitem value="Cadastro" icon="pi pi-fw pi-plus" outcome="cadastro.xhtml"/>
             <p:menuitem value="Consulta" icon="pi pi-fw pi-search" outcome="lista.xhtml"/>
 
         </p:menubar>
@@ -28,7 +29,9 @@
             <h:message for="lastName" />
 
             <p:outputLabel for="dateBirth" value="Data de Aniversário" />
-            <p:calendar id="dateBirth" value="#{peopleBean.person.dateBirth}" locale="pt_BR" pattern="dd/MM/yyyy" />
+            <p:calendar id="dateBirth" value="#{peopleBean.person.dateBirth}" locale="pt_BR" pattern="dd/MM/yyyy"         showOn="button" navigator="true" yearRange="c-100:c+30"
+                        required="true" requiredMessage="Data de aniversário é obrigatória"
+                        maxdate="#{now}"/>
             <h:message for="dateBirth" />
 
 
@@ -61,6 +64,8 @@
 
         </p:panelGrid>
     </h:form>
+
+
 
 
 </h:body>

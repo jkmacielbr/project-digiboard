@@ -20,10 +20,21 @@ public class PersonService {
         return this.personRepository.save(person);
 
     }
-    public void update(Person person){
-        personRepository.save(person);
+    public void update(List<Person> personList){
+
+        for (Person list: personList) {
+            personRepository.save(list);
+        }
 
  }
+
+    public void update(Person person){
+
+
+            personRepository.save(person);
+
+
+    }
 
 
     public Optional<Person> findById(Long id) {

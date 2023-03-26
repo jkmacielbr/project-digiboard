@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.Id;
 import javax.persistence.*;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -31,8 +32,8 @@ public class Person implements Serializable {
 
 
 
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "dd/MM/yyyy")
     @Column(name = "datebirth")
     private LocalDate dateBirth;
 

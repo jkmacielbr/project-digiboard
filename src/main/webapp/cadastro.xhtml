@@ -19,46 +19,90 @@
         <p:messages id="messages" />
         <p:panelGrid columns="1" columnClasses="label, value" style="margin: 0 auto;">
 
-            <p:outputLabel for="firstName" value="Nome:" />
+            <h:outputLabel for="firstName" value="Nome:" />
             <p:inputText id="firstName" value="#{peopleBean.person.firstName}" />
             <h:message for="firstName" />
 
 
-            <p:outputLabel for="lastName" value="Sobrenome:" />
+            <h:outputLabel for="lastName" value="Sobrenome:" />
             <p:inputText id="lastName" value="#{peopleBean.person.lastName}" />
             <h:message for="lastName" />
 
-            <p:outputLabel for="dateBirth" value="Data de Aniversário" />
-            <p:calendar id="dateBirth" value="#{peopleBean.person.dateBirth}" locale="pt_BR" pattern="dd/MM/yyyy"         showOn="button" navigator="true" yearRange="c-100:c+30"
+            <h:outputLabel for="dateBirth" value="Data de Aniversário:"/>
+
+            <p:calendar id="dateBirth" value ="#{peopleBean.person.dateBirth}" pattern="dd/MM/yyyy" locale="pt_BR"
+                        showOn="button" navigator="true" yearRange="c-100:c+30"
                         required="true" requiredMessage="Data de aniversário é obrigatória"
                         maxdate="#{now}"/>
             <h:message for="dateBirth" />
 
-
-            <p:outputLabel for="street" value="Rua:" />
+            <h:outputLabel for="street" value="Rua:"/>
             <p:inputText id="street" value="#{peopleBean.address.street}" />
             <h:message for="street" />
 
-
-            <p:outputLabel for="number" value="Número:" />
+            <h:outputLabel for="number" value="Número:"/>
             <p:inputText id="number" value="#{peopleBean.address.numberHouse}" />
             <h:message for="number" />
 
-            <p:outputLabel for="neighborhood" value="Bairro:" />
+            <h:outputLabel for="neighborhood" value="Bairro:"/>
             <p:inputText id="neighborhood" value="#{peopleBean.address.neighborhood}" />
             <h:message for="neighborhood" />
 
-            <p:outputLabel for="city" value="Cidade:" />
-            <p:inputText id="city" value="#{peopleBean.address.city}" />
+            <h:outputLabel for="city" value="Cidade:"/>
+            <p:inputText id="city" value="#{peopleBean.address.city}"/>
             <h:message for="city" />
 
-            <p:outputLabel for="state" value="Estado:" />
-            <p:inputText id="state" value="#{peopleBean.address.state}" />
+            <h:outputLabel for="state" value="Estado:"/>
+            <p:inputText id="state" value="#{peopleBean.address.state}"/>
             <h:message for="state" />
 
-            <p:outputLabel for="country" value="País:" />
-            <p:inputText id="country" value="#{peopleBean.address.country}" />
+            <h:outputLabel for="country" value="País:"/>
+            <p:inputText id="country" value="#{peopleBean.address.country}"/>
             <h:message for="country" />
+
+
+<!--            <p:outputLabel for="firstName" value="Nome:" />-->
+<!--            <p:inputText id="firstName" value="#{peopleBean.person.firstName}" />-->
+<!--            <h:message for="firstName" />-->
+
+
+<!--            <p:outputLabel for="lastName" value="Sobrenome:" />-->
+<!--            <p:inputText id="lastName" value="#{peopleBean.person.lastName}" />-->
+<!--            <h:message for="lastName" />-->
+
+<!--            <p:outputLabel for="dateBirth" value="Data de Aniversário" />-->
+<!--            <p:calendar id="dateBirth" value="#{peopleBean.person.dateBirth}" locale="pt_BR" pattern="dd/MM/yyyy"         showOn="button" navigator="true" yearRange="c-100:c+30"-->
+<!--                        required="true" requiredMessage="Data de aniversário é obrigatória"-->
+<!--                        maxdate="#{now}"/>-->
+<!--            <h:message for="dateBirth" />-->
+
+
+<!--            <p:outputLabel for="street" value="Rua:" />-->
+<!--            <p:inputText id="street" value="#{peopleBean.address.street}" />-->
+<!--            <h:message for="street" />-->
+
+
+<!--            <p:outputLabel for="number" value="Número:" />-->
+<!--            <p:inputText id="number" value="#{peopleBean.address.numberHouse}" />-->
+<!--            <h:message for="number" />-->
+
+<!--            <p:outputLabel for="neighborhood" value="Bairro:" />-->
+<!--            <p:inputText id="neighborhood" value="#{peopleBean.address.neighborhood}" />-->
+<!--            <h:message for="neighborhood" />-->
+
+<!--            <p:outputLabel for="city" value="Cidade:" />-->
+<!--            <p:inputText id="city" value="#{peopleBean.address.city}" />-->
+<!--            <h:message for="city" />-->
+
+<!--            <p:outputLabel for="state" value="Estado:" />-->
+<!--            <p:inputText id="state" value="#{peopleBean.address.state}" />-->
+<!--            <h:message for="state" />-->
+
+<!--            <p:outputLabel for="country" value="País:" />-->
+<!--            <p:inputText id="country" value="#{peopleBean.address.country}" />-->
+<!--            <h:message for="country" />-->
+
+
 
             <p:commandButton value="Cadastrar" icon="ui-icon-star" action="#{peopleBean.createPerson}" update="messages" style="margin-top: 20px;" />
 

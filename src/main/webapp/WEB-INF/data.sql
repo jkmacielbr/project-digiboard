@@ -50,15 +50,15 @@ insert into person (firstname, lastname, datebirth, address_id) values ('Diego',
 insert into person (firstname, lastname, datebirth, address_id) values ('Laura', 'Santana', '1988-03-07', 19);
 insert into person (firstname, lastname, datebirth, address_id) values ('Felipe', 'Vieira', '1994-08-02', 20);
 insert into person (firstname, lastname, datebirth, address_id) values ('Ana', 'Cardoso', '1996-05-12', 21);
-insert into person (firstname, lastname, datebirth, address_id) values ('Pedro','Almeida','1985-05-12',17);
-insert into person (firstname, lastname, datebirth, address_id) values ('Aline','Santos','1990-12-28',18);
-insert into person (firstname, lastname, datebirth, address_id) values ('Rafael','Souza','1982-03-17',19);
-insert into person (firstname, lastname, datebirth, address_id) values ('Carla','Mendonça','1995-09-01',20);
-insert into person (firstname, lastname, datebirth, address_id) values ('Lucas','Oliveira','1989-07-10',21);
-insert into person (firstname, lastname, datebirth, address_id) values ('Julia','Ribeiro','1991-11-20',22);
-insert into person (firstname, lastname, datebirth, address_id) values ('Diego','Fernandes','1987-08-06',23);
-insert into person (firstname, lastname, datebirth, address_id) values ('Renata','Silva','1984-02-19',24);
-insert into person (firstname, lastname, datebirth, address_id) values ('Gustavo','Pereira','1994-06-30',25);
+insert into person (firstname, lastname, datebirth, address_id) values ('Pedro','Almeida','1985-05-12',22);
+insert into person (firstname, lastname, datebirth, address_id) values ('Aline','Santos','1990-12-28',23);
+insert into person (firstname, lastname, datebirth, address_id) values ('Rafael','Souza','1982-03-17',24);
+insert into person (firstname, lastname, datebirth, address_id) values ('Carla','Mendonça','1995-09-01',25);
+insert into person (firstname, lastname, datebirth, address_id) values ('Lucas','Oliveira','1989-07-10',26);
+insert into person (firstname, lastname, datebirth, address_id) values ('Julia','Ribeiro','1991-11-20',27);
+insert into person (firstname, lastname, datebirth, address_id) values ('Diego','Fernandes','1987-08-06',28);
+insert into person (firstname, lastname, datebirth, address_id) values ('Renata','Silva','1984-02-19',29);
+insert into person (firstname, lastname, datebirth, address_id) values ('Gustavo','Pereira','1994-06-30',30);
 
 
 --

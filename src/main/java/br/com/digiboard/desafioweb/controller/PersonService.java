@@ -30,9 +30,7 @@ public class PersonService {
 
     public void update(Person person){
 
-
             personRepository.save(person);
-
 
     }
 
@@ -48,7 +46,7 @@ public class PersonService {
     }
 
     public List<Person> getAllPersons() {
-        return personRepository.findAll();
+        return personRepository.findAllByOrderByFirstNameAscLastNameAsc();
     }
 
     public List<Person> getPersonsBySearchString(String searchString) {

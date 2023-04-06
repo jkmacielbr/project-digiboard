@@ -42,24 +42,17 @@ public class PersonBean implements Serializable {
 
     private String street;
     private Long numberHouse;
-
     private String neighborhood;
-
     private String city;
-
     private String state;
-
     private String  country;
-
     private String firstName;
-
     private String lastName;
     private LocalDate dateBirth;
 
     @Autowired
     public PersonBean(PersonService personService){
         this.personService = personService;
-        selectedUser = new Person();
 
     }
 
@@ -79,6 +72,8 @@ public class PersonBean implements Serializable {
 
         if(searchString == null || searchString.isBlank() || searchString.equals("")) {
             personList =  personService.getAllPersons();
+            personList.sort((p1, p2) -> p1.getFirstName().toLowerCase().compareTo(p2.getFirstName().toLowerCase()));
+
             return personList;
         } else {
 
@@ -91,7 +86,6 @@ public class PersonBean implements Serializable {
 
     // atualizar pessoa selecionada no banco de dados
     public String updatePerson(){
-
         this.personService.update(this.selectedUser);
 
         return "lista.app?faces-redirect=true";
@@ -189,6 +183,7 @@ public class PersonBean implements Serializable {
 
             // retorna a página lista.xhtml após salvar a nova pessoa
 //            return "index.app?faces-redirect=true";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("lista.app");
 
         } catch (Exception e) {
 
@@ -207,8 +202,6 @@ public class PersonBean implements Serializable {
         city="";
         state="";
         country = "";
-
-
     }
 
 

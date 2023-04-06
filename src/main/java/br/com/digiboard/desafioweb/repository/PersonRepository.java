@@ -8,4 +8,5 @@ import java.util.List;
 public interface PersonRepository extends JpaRepository<Person, Long> {
     List<Person> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrderByFirstNameAscLastNameAsc(String firstName, String lastName);
 
+    List<Person> findAllByOrderByFirstNameAscLastNameAsc();
 }

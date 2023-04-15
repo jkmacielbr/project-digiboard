@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en">
+<h:head>
+    <title>Lista de Pessoas</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:dialog header="Adicionar Pessoa" widgetVar="addPersonDialog" onHide="PF('personTable').getPaginator().setPage(0); PF('personTable').load()">
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputText value="Nome:" />
+                <p:inputText value="#{peopleBean.firstName}" />
+
+                <h:outputText value="Sobrenome:" />
+                <p:inputText value="#{peopleBean.lastName}" />
+
+                <h:outputText value="Data de Aniversário:" />
+                <p:calendar id="dateBirth" value ="#{peopleBean.dateBirth}" pattern="dd/MM/yyyy" locale="pt_BR"
+                            showOn="button" navigator="true" yearRange="c-100:c+30"
+                            required="true" requiredMessage="Data de aniversário é obrigatória"
+                            maxdate="#{now}" />
+
+                <h:outputText value="Rua:" />
+                <p:inputText value="#{peopleBean.street}" />
+
+                <h:outputText value="Número:" />
+                <p:inputText value="#{peopleBean.numberHouse}" />
+
+                <h:outputText value="Bairro:" />
+                <p:inputText value="#{peopleBean.neighborhood}" />
+
+                <h:outputText value="Cidade:" />
+                <p:inputText value="#{peopleBean.city}" />
+
+                <h:outputText value="Estado:" />
+                <p:inputText value="#{peopleBean.state}" />
+
+                <h:outputText value="País:" />
+                <p:inputText value="#{peopleBean.country}" />
+
+                <f:facet name="footer">
+                    <p:commandButton value="Salvar" icon="pi pi-plus" action="#{peopleBean.createPerson()}"
+                                     update=":form:personTable" onclick="PF('addPersonDialog').hide()" oncomplete="peopleBean.emptyVariables();" />
+                    <p:commandButton value="Cancelar" icon="fa fa-fw fa-close" onclick="PF('addPersonDialog').hide()" />
+                </f:facet>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+
+    <h:form id="form">
+
+        <p:dataTable id="personTable" var="person" value="#{peopleBean.listAll()}" paginator="true" rows="10">
+            <f:facet name="header">
+
+                <p:commandButton style="float:left;"  value="Cadastro" icon="fa fa-fw fa-plus" onclick="PF('addPersonDialog').show()"/>
+
+                <p:outputPanel>
+
+                    <h:outputLabel for="globalFilter" />
+
+                    <p:inputText id="globalFilter" value="#{peopleBean.searchString}" style="width:300px"
+                                 placeholder="Pesquisar por nome ou sobrenome">
+                        <p:ajax event="keyup" listener="#{peopleBean.filterPeople}" update="personTable" delay="300"/>
+                    </p:inputText>
+
+                </p:outputPanel>
+
+            </f:facet>
+
+            <p:column headerText="Nome" >
+                <h:outputText value="#{person.firstName}" />
+            </p:column>
+            <p:column headerText="Sobrenome">
+                <h:outputText value="#{person.lastName}" />
+            </p:column>
+            <p:column headerText="Data de Aniversário" width ="200">
+
+                <h:outputText value="#{peopleBean.getFormattedDate(person.dateBirth)}"/>
+            </p:column>
+
+            <p:column headerText="Ações" width="200">
+                <div style="text-align: center">
+                    <p:commandButton icon="ui-icon-home" title="Endereço" style="font-size: 24px;" onclick="PF('enderecoDialog#{person.id}').show()"
+                                     type="button"/>
+                    <p:dialog header="Endereço de #{person.firstName}" widgetVar="enderecoDialog#{person.id}" modal="true">
+                        <b>Logradouro: </b>#{person.address.street} <br/>
+                        <b>Número: </b>#{person.address.numberHouse}<br/>
+                        <b>Bairro: </b>#{person.address.neighborhood}<br/>
+                        <b>Cidade: </b>#{person.address.city}<br/>
+                        <b>Estado: </b>#{person.address.state}<br/>
+                        <b>País: </b>#{person.address.country}<br/>
+
+                    </p:dialog>
+
+                    <p:commandButton icon="ui-icon-pencil" title="Edita" style="font-size: 24px;" onclick="PF('editDialog').show();" update=":form:editPanel"
+                                     process="@this">
+                        <f:setPropertyActionListener value="#{person}" target="#{peopleBean.selectedUser}" />
+                    </p:commandButton>
+
+                    <p:commandButton icon="ui-icon-trash" title="Delete" style="font-size: 24px;" onclick="PF('deleteDialog').show();" update=":form:deletePanel"
+                                     process="@this">
+                        <f:setPropertyActionListener value="#{person}" target="#{peopleBean.selectedUser}" />
+                    </p:commandButton>
+                </div>
+            </p:column>
+        </p:dataTable>
+        <p:messages id="msgs" showDetail="true" autoUpdate="true" closable="true" />
+
+        <p:dialog id="editDialog" header="Edit User" widgetVar="editDialog" modal="true" resizable="false" visible="false" onHide="PF('editDialog').hide();#{peopleBean.setSelectedUser(null)}">
+            <h:panelGrid id="editPanel" columns="2">
+                <h:outputLabel for="firstName" value="Nome:" />
+                <p:inputText id="firstName" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.firstName}" />
+
+
+                <h:outputLabel for="lastName" value="Sobrenome:" />
+                <p:inputText id="lastName" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.lastName}" />
+
+                <h:outputLabel for="dateBirth" value="Data de Aniversário:"/>
+
+                <p:calendar id="dateBirth" value ="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.dateBirth}" pattern="dd/MM/yyyy" locale="pt_BR"
+                            showOn="button" navigator="true" yearRange="c-100:c+30"
+                            required="true" requiredMessage="Data de aniversário é obrigatória"
+                            maxdate="#{now}"/>
+
+                <h:outputLabel for="street" value="Rua:"/>
+                <p:inputText id="street" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.street}" />
+
+                <h:outputLabel for="number" value="Número:"/>
+                <p:inputText id="number" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.numberHouse}" />
+
+                <h:outputLabel for="neighborhood" value="Bairro:"/>
+                <p:inputText id="neighborhood" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.neighborhood}" />
+
+                <h:outputLabel for="city" value="Cidade:"/>
+                <p:inputText id="city" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.city}"/>
+
+                <h:outputLabel for="state" value="Estado:"/>
+                <p:inputText id="state" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.state}"/>
+
+                <h:outputLabel for="country" value="País:"/>
+                <p:inputText id="country" value="#{peopleBean.selectedUser == null ? '' : peopleBean.selectedUser.address.country}"/>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Save" action="#{peopleBean.updatePerson}"
+                                     update=":form:personTable" oncomplete="PF('editDialog').hide();" />
+                    <p:commandButton value="Cancel" onclick="PF('editDialog').hide();" />
+                </f:facet>
+            </h:panelGrid>
+        </p:dialog>
+
+        <p:dialog id="deleteDialog" header="Confirmation" widgetVar="deleteDialog" modal="true" resizable="false">
+            <h:panelGrid id="deletePanel" columns="2">
+                <h:outputText value="Tem certeza que deseja apagar #{peopleBean.selectedUser.firstName} #{peopleBean.selectedUser.lastName}" />
+                <div>
+                    <p:commandButton value="Yes" action="#{peopleBean.deletePerson}" update=":form:personTable" oncomplete="PF('deleteDialog').hide();" style="margin: 0 auto"
+                                     prcoess="@this" immediate="true"/>
+                    <p:commandButton value="No" onclick="PF('deleteDialog').hide(); return false;" style="margin: 0 auto"/>
+                </div>
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+
+</h:body>
+</html>

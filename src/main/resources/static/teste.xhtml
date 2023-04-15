@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en">
+<h:head>
+    <title>Lista de Pessoas</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+
+
+            <h:panelGrid columns="2" id="managePersonGrid">
+                <h:outputLabel for="firstName" value="Nome:" />
+                <p:inputText id="firstName" value="#{peopleBean.selectedUser.firstName}" />
+
+
+                <h:outputLabel for="lastName" value="Sobrenome:" />
+                <p:inputText id="lastName" value="#{peopleBean.selectedUser.lastName}" />
+
+                <h:outputLabel for="dateBirth" value="Data de Aniversário:"/>
+
+                <p:calendar id="dateBirth" value ="#{peopleBean.selectedUser.dateBirth}" pattern="dd/MM/yyyy" locale="pt_BR"
+                            showOn="button" navigator="true" yearRange="c-100:c+30"
+                            required="true" requiredMessage="Data de aniversário é obrigatória"
+                            maxdate="#{now}"/>
+
+                <h:outputLabel for="street" value="Rua:"/>
+                <p:inputText id="street" value="#{peopleBean.selectedUser.address.street}" />
+
+                <h:outputLabel for="number" value="Número:"/>
+                <p:inputText id="number" value="#{peopleBean.selectedUser.address.numberHouse}" />
+
+                <h:outputLabel for="neighborhood" value="Bairro:"/>
+                <p:inputText id="neighborhood" value="#{peopleBean.selectedUser.address.neighborhood}" />
+
+                <h:outputLabel for="city" value="Cidade:"/>
+                <p:inputText id="city" value="#{peopleBean.selectedUser.address.city}"/>
+
+                <h:outputLabel for="state" value="Estado:"/>
+                <p:inputText id="state" value="#{peopleBean.selectedUser.address.state}"/>
+
+                <h:outputLabel for="country" value="País:"/>
+                <p:inputText id="country" value="#{peopleBean.selectedUser.address.country}"/>
+
+                <p:commandButton value="Save" action="#{peopleBean.updatePerson}"
+                                 update=":form" oncomplete="PF('managePersonDialog').hide()"
+                                 styleClass="ui-button-success" />
+            </h:panelGrid>
+
+    </h:form>
+
+</h:body>
+</html>

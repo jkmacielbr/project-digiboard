@@ -1,14 +1,15 @@
 package br.com.digiboard.desafioweb.model;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table(name = "usuarios")
-@Getter
-@Setter
+@Table(name = "users")
+@Data
 @Entity
+
 
 public class User {
 
@@ -16,7 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
-    @Column
+    @Column(unique = true)
     private String login;
     @Column
     private String password;

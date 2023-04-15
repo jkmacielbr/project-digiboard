@@ -3,7 +3,6 @@ package br.com.digiboard.desafioweb.controller;
 import br.com.digiboard.desafioweb.model.User;
 import br.com.digiboard.desafioweb.repository.UserRepository;
 import br.com.digiboard.desafioweb.security.LoginValidator;
-import br.com.digiboard.desafioweb.security.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +31,14 @@ public class UserService {
         return loginValidator.validarLogin(user,password);
 
     }
+
+
+    public User findByLogin(String login){
+        return this.userRepository.findByLogin(login);
+    }
+
+
+
 
 
 
